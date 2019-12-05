@@ -10,8 +10,22 @@ import java.util.List;
 
 public abstract class IActionListener implements ActionListener {
     
+   //================================ '%' ======================================
+   // number of pressed percentkey in sequence
+   public int countPressedPercent; 
+   // keep temporary results when '%' is pressed more then one time
+   public List<String> percentHistoryOperations = new ArrayList(); 
+    
+   //=============================== '=' =======================================
    // keep temporary results when '=' is pressed more then one time
-   public List<String> resHistoryOperations = new ArrayList(); 
+   public List<String> resHistoryOperations = new ArrayList();
+   // number of pressed in sequence
+   public int countPressedResult;
+   
+   //=============================== '.' =======================================
+   // key point '.' pressed for first double number 
+   public List<String> points = new ArrayList();
+   
    // keep all processed calculation in memory
    public List<String> calcHistoryOperations = new ArrayList();
    // keep all key pressing for analisys and limitation
@@ -20,10 +34,6 @@ public abstract class IActionListener implements ActionListener {
    public TextField result;
    // key like '0','1','2','3','4','5','6','7','8','9'
    public String pressKey ;
-   // number of pressed in sequence
-   public int countPressedResult;
-   // key point '.' pressed for first double number 
-   public List<String> points = new ArrayList();
    
     public void setHistor(History histor) {
         this.histor = histor;
@@ -72,7 +82,22 @@ public abstract class IActionListener implements ActionListener {
     public List<String> getResHistoryOperations() {
         return resHistoryOperations;
     }
-    
+
+    public void setCountPressedPercent(int countPressedPercent) {
+        this.countPressedPercent = countPressedPercent;
+    }
+
+    public int getCountPressedPercent() {
+        return countPressedPercent;
+    }
+
+    public void setPercentHistoryOperations(List<String> percentHistoryOperations) {
+        this.percentHistoryOperations = percentHistoryOperations;
+    }
+
+    public List<String> getPercentHistoryOperations() {
+        return percentHistoryOperations;
+    }
     
     
 }

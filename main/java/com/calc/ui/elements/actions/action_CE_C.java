@@ -61,8 +61,10 @@ public class action_CE_C extends  actionCommon {
                 action_point.points.clear();
                 
                 getActResult().countPressedResult = 0;
-                
                 getActResult().resHistoryOperations.clear();
+                
+                getAct_percent().countPressedPercent = 0;
+                getAct_percent().percentHistoryOperations.clear();
                 
                 System.out.println("___histor___" + getActResult().countPressedResult);
                 

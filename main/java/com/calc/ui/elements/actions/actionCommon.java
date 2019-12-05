@@ -9,7 +9,7 @@ public class actionCommon extends IActionListener {
 
     actionResult actResult;
     action_CE_C action_ce_c;
-   // actionPoint actPoint;
+    action_percent act_percent;
 
     public void setActResult(actionResult actResult) {
         this.actResult = actResult;
@@ -27,6 +27,16 @@ public class actionCommon extends IActionListener {
         return action_ce_c;
     }
 
+    public void setAct_percent(action_percent act_percent) {
+        this.act_percent = act_percent;
+    }
+
+    public action_percent getAct_percent() {
+        return act_percent;
+    }
+    
+    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -34,8 +44,11 @@ public class actionCommon extends IActionListener {
             
             getActResult().countPressedResult = 0;
             getActResult().resHistoryOperations.clear();
+            
+            getAct_percent().countPressedPercent = 0;
+            getAct_percent().percentHistoryOperations.clear();
 
-            System.out.println("common:" + getActResult().countPressedResult);
+            System.out.println("common:" + getActResult().countPressedPercent);
 
             int historySize = histor.getHistory().size();
 

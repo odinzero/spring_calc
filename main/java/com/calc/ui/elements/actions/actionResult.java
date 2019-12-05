@@ -25,20 +25,21 @@ public class actionResult extends actionCommon {
         if (getAction_ce_c().isTurnOnCalc()) {
 
             countPressedResult++;
-            
-            calcHistoryOperations.add(result.getText());
-            
-          //  System.out.println("co0: " + result.getText());
 
+            calcHistoryOperations.add(result.getText());
+
+            //  System.out.println("co00: " + result.getText());
             String r = null;
             if (countPressedResult == 1) {
-                
+
                 resHistoryOperations.add(result.getText());
-                
+
+                System.out.println("co0: " + result.getText());
+
                 r = parseOperation(result.getText(), "$4");
+              
                 result.setText(r.toString());
-            }
-            // countPressedResult > 1
+            } // countPressedResult > 1
             else {
 
                 if (!result.getText().equals("0")) {
@@ -46,55 +47,57 @@ public class actionResult extends actionCommon {
                     if (histor.getHistory().size() >= 3) {
 
                         String res_history_operations = resHistoryOperations.get(0);
- 
-//                        System.out.println("co1: " + res_history_operations);
+
+                        System.out.println("co1: " + res_history_operations);
 
                         String[] parsedTwoArgText = util2.parseArguments(res_history_operations);
-                        
-                        String operand = parsedTwoArgText[3];
-                        String last_argument = parsedTwoArgText[4];
-                        
-//                        System.out.println("co2: " + operand + " " + last_argument);
 
-                        String res = result.getText() + operand + last_argument;
+                        if (parsedTwoArgText.length > 2) {
+                            String operand = parsedTwoArgText[3];
+                            String last_argument = parsedTwoArgText[4];
 
-                        r = parseOperation(res, "$4");
-                        result.setText(r.toString());
-                        
+                            //  System.out.println("co2: " + operand + " " + last_argument);
+                            String res = result.getText() + operand + last_argument;
+
+                            r = parseOperation(res, "$4");
+                            result.setText(r.toString());
+                        } else {
+                            
+                           result.setText(result.getText());
+                        }
+
 //                        System.out.println("=  01: " + result.getText() + "  " + operand + "  " + last_argument );
                     } else {
-                        r = parseOperation(result.getText(), "$4"); 
+                        r = parseOperation(result.getText(), "$4");
                         result.setText(r.toString());
-                         System.out.println("=  02: " );
+                        System.out.println("=  02: ");
                     }
-                // result text = 0    
+                    // result text = 0    
                 } else {
-                    if(histor.getHistory().size() == 0) {
-                       result.setText("0"); 
-                        System.out.println("=  03: " );
+                    if (histor.getHistory().size() == 0) {
+                        result.setText("0");
+                        System.out.println("=  03: ");
                     } else {
                         String res_history_operations = resHistoryOperations.get(0);
- 
-//                        System.out.println("co1: " + res_history_operations);
 
+//                        System.out.println("co1: " + res_history_operations);
                         String[] parsedTwoArgText = util2.parseArguments(res_history_operations);
-                        
+
                         String operand = parsedTwoArgText[3];
                         String last_argument = parsedTwoArgText[4];
-                        
-//                        System.out.println("co2: " + operand + " " + last_argument);
 
+//                        System.out.println("co2: " + operand + " " + last_argument);
                         String res = result.getText() + operand + last_argument;
 
                         r = parseOperation(res, "$4");
                         result.setText(r.toString());
                     }
-                    
+
                 }
             }
 
             setPressed(true);
-            
+
         }
     }
 

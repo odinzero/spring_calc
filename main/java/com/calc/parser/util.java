@@ -8,9 +8,11 @@ public class util {
 
         String s = input.replaceAll(regex, find);
 
-//        System.out.println("s:" + s);
+        System.out.println("s:" + s);
         Number num1 = parseNumber(input, "$2");
         Number num2 = parseNumber(input, "$6");
+        
+        System.out.println("num1:" + num1 + " num2:" + num2);
 
         // num1 and num2 should exist !
         if (num1 != null && num2 != null) {
@@ -101,7 +103,8 @@ public class util {
         // 'numvberStr' canno be equal ""
         if (!numberStr.equals("")) {
             // remove zero after dot  
-            numberStr = numberStr.replaceAll("(\\d*)(\\.*)([0]*$)", "$1");
+//            numberStr = numberStr.replaceAll("(\\d*)(\\.*)([0]*$)", "$1");
+            numberStr = numberStr.replaceAll("([-]*\\d*)(\\.*)(\\d*)(\\.*)([+-\\/\\*])([0]*$)", "$1$2$3");
 
             //System.out.println("numberStr a :" + numberStr);
             int dot = numberStr.indexOf('.');
@@ -120,7 +123,7 @@ public class util {
             } // number, like this 5.46467
             // Double
             else {
-                // System.out.println("m: " + numberStr);  
+                  System.out.println("mmmm: " + numberStr);  
                 numDouble = Double.parseDouble(numberStr);
                 // numInt = Integer.parseInt(numberStr); 
 
