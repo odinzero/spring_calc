@@ -94,7 +94,8 @@ public class actionPoint extends actionCommon {
                     result.setText(parsedTwoArgText[0]); //
                     System.out.println("point3_2_:");
                 }
-            } // 
+            }
+            // 
             else if (points.get(1).equals("one_point_point") && points.size() >= 2){
                 
                  int count = util.findChar(parsedTwoArgText[0], '.');
