@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                           http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+
+    <!--
+        JPanel pLow = new JPanel();
+        GridBagLayout gbl = new GridBagLayout();
+        pLow.setLayout(gbl);
+        GridBagConstraints gbc = new GridBagConstraints();
+        // '1'
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.gridwidth = 1;
+        gbc.insets = new Insets(5, 10, 0, 0);// (int top, int left, int bottom, int right)
+        pLow.add(b1, gbc);
+        // '2'
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(5, 5, 0, 0);// (int top, int left, int bottom, int right)
+        pLow.add(b2, gbc);
+        // '3'
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        pLow.add(b3, gbc);
+        // '-'
+        gbc.gridx = 3;
+        gbc.gridy = 0;
+        pLow.add(minus, gbc);
+        // '='
+        gbc.gridx = 4;
+        gbc.gridy = 0;
+        gbc.gridheight = 2;
+        gbc.insets = new Insets(5, 5, 0, 10);// (int top, int left, int bottom, int right)
+        pLow.add(equality, gbc);
+        // last row 
+         '0'
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(5, 10, 5, 0);// (int top, int left, int bottom, int right)
+        pLow.add(b0, gbc);
+        // '.'
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        gbc.insets = new Insets(5, 5, 5, 0);// (int top, int left, int bottom, int right)
+        pLow.add(point, gbc);
+        // '+'
+        gbc.gridx = 3;
+        gbc.gridy = 1;
+        pLow.add(plus, gbc);
+    -->  
+    
+    <import resource="buttons_standard_5L.xml"></import>
+    <import resource="buttons_standard_6L.xml"></import>
+    
+    <!-- GridBagLayout gbl = new GridBagLayout(); -->
+    <bean id="gbl" class= "java.awt.GridBagLayout"  />
+    
+    <!-- int gridx, int gridy,
+ 229:                  int gridwidth, int gridheight,
+ 230:                  double weightx, double weighty,
+ 231:                  int anchor, int fill,
+ 232:                  Insets insets, int ipadx, int ipady -->
+    <!-- GridBagConstraints gbc = new GridBagConstraints(); -->
+    <!-- <bean id="gbc" class= "java.awt.GridBagConstraints" >
+        <constructor-arg index="0" value="0"/>
+        <constructor-arg index="1" value="0"/>
+        <constructor-arg index="2" value="0"/>
+        <constructor-arg index="3" value="0"/>
+        <constructor-arg index="4" value="0"/>
+        <constructor-arg index="5" value="0"/>
+        <constructor-arg index="6" ref="inset_1"/>
+        <constructor-arg index="7" value="0"/>
+        <constructor-arg index="8" value="0"/>
+        <property name="fill" value="GridBagConstraints.HORIZONTAL"
+         <property name="north" ref="north_1" /> -->
+         
+       <!--
+         <property name="gridx" value = "0"  />       
+         <property name="gridy" value="0" />
+         <property name="weightx" value="1.0" />
+         <property name="weighty" value="1.0" />
+         <property name="gridwidth" value="1" />
+         <property name="insets" value="inset_1" /> -->
+    
+    <!-- GridBagConstraints.HORIZONTAL; -->
+    <util:constant id="horizontal" static-field="java.awt.GridBagConstraints.HORIZONTAL" />
+    
+    <!-- GridBagConstraints.NORTH; -->
+    <util:constant id="north_1" static-field="java.awt.GridBagConstraints.NORTH" />
+    
+    <!-- Insets inset_1 = new Insets(5, 10, 0, 0); -->
+    <bean id="inset_1" class="java.awt.Insets">
+        <constructor-arg index="0" value="5"/>
+        <constructor-arg index="1" value="10"/>
+        <constructor-arg index="2" value="0"/>
+        <constructor-arg index="3" value="0"/>
+    </bean>
+    
+    <!-- gbc.fill -->
+    <!--<bean id="fill_1" class="java.awt.GridBagConstraints">
+        <property name="fill" ref="gbc" />
+    </bean> -->
+    
+    <!-- gbc.fill = GridBagConstraints.HORIZONTAL; -->
+    
+    
+    <!-- MainPanel pLow = new MainPanel(); -->
+    <bean id="pLow" class= "com.calc.ui.GridBagPanel" init-method="init2">
+        <!-- pLow.setLayout(gbl); -->
+        <!--<property name="layout">
+            <ref bean="gbl"/>
+        </property> --> 
+        <property name="panelComponents">
+            <list>
+                <!-- five row -->
+                <ref bean="oneButton"/>
+                <ref bean="twoButton"/>
+                <ref bean="threeButton"/>
+                <ref bean="minusButton"/>
+                <ref bean="resultButton"/>
+                <!-- six row -->
+                <ref bean="zeroButton"/>
+                <ref bean="pointButton"/>
+                <ref bean="plusButton"/>
+            </list>
+        </property>
+    </bean> 
+    
+</beans>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                           http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+
+    <!--
+        JPanel buttonPanel = new JPanel();                              
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 10));
+        buttonPanel.setLayout(new GridLayout(0, 5, 5, 5));
+        buttonPanel.add(mcButton);
+        buttonPanel.add(mrButton);
+        buttonPanel.add(msButton);
+        buttonPanel.add(mplusButton);
+        buttonPanel.add(mminusButton);
+
+        buttonPanel.add(arrleftButton);
+        buttonPanel.add(ceButton);
+        buttonPanel.add(cButton);
+        buttonPanel.add(plusminusButton);
+        buttonPanel.add(sqrtButton);
+
+        buttonPanel.add(sevenButton);
+        buttonPanel.add(eightButton);
+        buttonPanel.add(nineButton);
+        buttonPanel.add(divideButton);
+        buttonPanel.add(percentButton);
+
+        buttonPanel.add(fourButton);
+        buttonPanel.add(fiveButton);
+        buttonPanel.add(sixButton);
+        buttonPanel.add(multiplyButton);
+        buttonPanel.add(onedividexButton);
+    -->
+    
+    <import resource="buttons_standard_1L.xml"></import>
+    <import resource="buttons_standard_2L.xml"></import>
+    <import resource="buttons_standard_3L.xml"></import>
+    <import resource="buttons_standard_4L.xml"></import>
+    
+    <!-- Border outBorder = BorderFactory.createEmptyBorder(10, 10, 0, 10) -->
+    <bean id="outBorder" class="javax.swing.BorderFactory" factory-method="createEmptyBorder">
+        <constructor-arg index="0" value="10"></constructor-arg>
+        <constructor-arg index="1" value="10"></constructor-arg>
+        <constructor-arg index="2" value="0"></constructor-arg>
+        <constructor-arg index="3" value="10"></constructor-arg>
+    </bean>
+    
+    <!-- GridLayout grid_layout = new GridLayout(0, 5, 5, 5) -->
+    <bean id="grid_layout" class= "java.awt.GridLayout">
+        <constructor-arg index="0" value="0"></constructor-arg>
+        <constructor-arg index="1" value="5"></constructor-arg>
+        <constructor-arg index="2" value="5"></constructor-arg>
+        <constructor-arg index="3" value="5"></constructor-arg>
+    </bean>
+    
+    <!-- MainPanel buttonPanel = new MainPanel();  -->
+    <bean id="buttonPanel" class= "com.calc.ui.MainPanel" init-method="init">
+        <!-- buttonPanel.setBorder(outBorder); -->
+         <property name="border">
+             <ref bean="outBorder"/>
+        </property>
+        <!-- buttonPanel.setLayout(new GridLayout(0, 5, 5, 5)); -->
+         <property name="layout">
+             <ref bean="grid_layout"/>
+        </property> 
+        <property name="panelComponents">
+            <list>
+                <!-- first row -->
+                <ref bean="mcButton"/>
+                <ref bean="mrButton"/>
+                <ref bean="msButton"/>
+                <ref bean="mplusButton"/>
+                <ref bean="mminusButton"/>
+                <!-- second row -->
+                <ref bean="arrleftButton"/>
+                <ref bean="ceButton"/>
+                <ref bean="cButton"/>
+                <ref bean="plusminusButton"/>
+                <ref bean="sqrtButton"/>
+                <!-- third row -->
+                <ref bean="sevenButton"/>
+                <ref bean="eightButton"/>
+                <ref bean="nineButton"/>
+                <ref bean="divideButton"/>
+                <ref bean="percentButton"/>
+                <!-- four row -->
+                <ref bean="fourButton"/>
+                <ref bean="fiveButton"/>
+                <ref bean="sixButton"/>
+                <ref bean="multiplyButton"/>
+                <ref bean="onedividexButton"/>
+            </list>
+        </property>
+    </bean> 
+    
+</beans>

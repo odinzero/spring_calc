@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+     
+    <!-- ==================== BUTTON "4" ============================ -->
+    <bean id="fourButton" class="com.calc.ui.elements.Button"  init-method="init">
+        <property name="actionListener">
+            <ref bean="actionFourListener"/> 
+        </property> 
+        <property name="text">
+            <value>4</value>
+        </property>
+    </bean>
+    
+    <bean id="actionFourListener"  class="com.calc.ui.elements.actions.actionCommon">
+        <property name="result">
+            <ref bean="resultTextField"/> 
+        </property>
+        <property name="pressKey">
+            <value>4</value> 
+        </property>
+        <property name="actResult">
+            <ref bean="actionResultListener"/> 
+        </property>
+        <property name="histor">
+            <ref bean="_history_"/> 
+        </property>
+         <property name="action_ce_c">
+            <ref bean="actionCancelListener"/> 
+        </property>
+    </bean>
+    
+    <!-- ==================== BUTTON  "5" ============================ -->
+    <bean id="fiveButton" class="com.calc.ui.elements.Button"  init-method="init">
+        <property name="actionListener">
+            <ref bean="actionFiveListener"/> 
+        </property> 
+        <property name="text">
+            <value>5</value>
+        </property>
+    </bean>
+    
+    <bean id="actionFiveListener"  class="com.calc.ui.elements.actions.actionCommon">
+        <property name="result">
+            <ref bean="resultTextField"/> 
+        </property>
+        <property name="pressKey">
+            <value>5</value> 
+        </property>
+        <property name="actResult">
+            <ref bean="actionResultListener"/> 
+        </property>
+        <property name="histor">
+            <ref bean="_history_"/> 
+        </property>
+         <property name="action_ce_c">
+            <ref bean="actionCancelListener"/> 
+        </property>
+    </bean>
+    
+    <!-- ==================== BUTTON  "6" ============================ -->
+    <bean id="sixButton" class="com.calc.ui.elements.Button"  init-method="init">
+        <property name="actionListener">
+            <ref bean="actionSixListener"/> 
+        </property> 
+        <property name="text">
+            <value>6</value>
+        </property>
+    </bean>
+    
+    <bean id="actionSixListener"  class="com.calc.ui.elements.actions.actionCommon">
+        <property name="result">
+            <ref bean="resultTextField"/> 
+        </property>
+        <property name="pressKey">
+            <value>6</value> 
+        </property>
+        <property name="actResult">
+            <ref bean="actionResultListener"/> 
+        </property>
+        <property name="histor">
+            <ref bean="_history_"/> 
+        </property>
+         <property name="action_ce_c">
+            <ref bean="actionCancelListener"/> 
+        </property>
+    </bean>
+    
+    <!-- ==================== BUTTON  "*" ============================ -->
+    <bean id="multiplyButton" class="com.calc.ui.elements.Button"  init-method="init">
+        <property name="actionListener">
+            <ref bean="actionMultiplyListener"/> 
+        </property> 
+        <property name="text">
+            <value>*</value>
+        </property>
+    </bean>
+    
+    <bean id="actionMultiplyListener"  class="com.calc.ui.elements.actions.actionCommon">
+        <property name="result">
+            <ref bean="resultTextField"/> 
+        </property>
+        <property name="pressKey">
+            <value>*</value> 
+        </property>
+        <property name="actResult">
+            <ref bean="actionResultListener"/> 
+        </property>
+        <property name="histor">
+            <ref bean="_history_"/> 
+        </property>
+         <property name="action_ce_c">
+            <ref bean="actionCancelListener"/> 
+        </property>
+    </bean>
+    
+    <!-- ==================== BUTTON  "1/x" ============================ -->
+    <bean id="onedividexButton" class="com.calc.ui.elements.Button"  init-method="init">
+        <property name="actionListener">
+            <ref bean="actionOnedividexListener"/> 
+        </property> 
+        <property name="text">
+            <value>1/x</value>
+        </property>
+    </bean>
+    
+    <bean id="actionOnedividexListener"  class="com.calc.ui.elements.actions.action_oneDivideX">
+        <property name="result">
+            <ref bean="resultTextField"/> 
+        </property>
+        <property name="pressKey">
+            <value>1/x</value> 
+        </property>
+        <property name="actResult">
+            <ref bean="actionResultListener"/> 
+        </property>
+        <property name="histor">
+            <ref bean="_history_"/> 
+        </property>
+        <property name="action_ce_c">
+            <ref bean="actionCancelListener"/> 
+        </property>
+    </bean>
+
+</beans>

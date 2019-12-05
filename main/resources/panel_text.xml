@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                           http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+
+    <!--
+    
+        int  y_direction2 = BoxLayout.Y_AXIS;
+        BoxLayout boxLayout = new BoxLayout(textPanel, y_direction);
+        
+        Dimension dimensionTop = new Dimension(0, 10);
+        Box box = Box.createRigidArea(dimensionTop);
+
+        List panelComponents = new ArrayList();
+        panelComponents.add(Box);
+        panelComponents.add(resultTextField);
+        
+        MainPanel textPanel = new MainPanel();
+        textPanel.setLayout(boxLayout);
+        textPanel.setPanelComponents(List panelComponents);
+        
+        Color colorTextField = Color.white;
+        
+        TextField resultTextField = new TextField();
+        resultTextField.setBackground(colorTextField);
+        resultTextField.setMinimumSize(dimensionTextField);
+        resultTextField.setPreferredSize(dimensionTextField);
+        resultTextField.setMaximumSize(dimensionTextField);
+        
+        
+    -->
+    
+    <!-- BoxLayout.Y_AXIS -->
+    <util:constant id="y_direction2" static-field="javax.swing.BoxLayout.Y_AXIS" />
+    
+    <!-- BoxLayout boxLayout = new BoxLayout(textPanel, y_direction) -->
+    <bean id="boxLayout2" class="javax.swing.BoxLayout">
+        <constructor-arg index="0" ref="textPanel"/>
+        <constructor-arg index="1" ref="y_direction2" />
+    </bean>
+    
+    <!-- MainPanel textPanel = new MainPanel(); -->
+    <bean id="textPanel" class="com.calc.ui.MainPanel"  init-method="init">
+         <!--  textPanel.setLayout(boxLayout); -->
+        <property name="layout">
+             <ref bean="boxLayout2"/>
+        </property>
+        <property name="panelComponents">
+            <list>
+                <!-- textPanel.add(Box); -->
+                <ref bean="box"/>
+                <ref bean="resultTextField"/>
+            </list>
+        </property>
+    </bean>
+    
+    <!-- TEXTFIELD "Result" -->
+    <bean id="resultTextField" class="com.calc.ui.elements.TextField"  init-method="init"> 
+      <!-- resultTextField.setBackground(colorTextField); -->  
+        <property name="background">
+            <ref bean="colorTextField" /> 
+        </property>
+      <!--  resultTextField.setMinimumSize(dimensionTextField); -->
+        <property name="minimumSize">
+            <ref bean="dimensionTextField" />
+        </property>
+        <!--  resultTextField.setPreferredSize(dimensionTextField); -->
+        <property name="preferredSize">
+            <ref bean="dimensionTextField" />
+        </property>
+        <!--  resultTextField.setMaximumSize(dimensionTextField); -->
+        <property name="maximumSize">
+            <ref bean="dimensionTextField" />
+        </property>
+    </bean>
+    
+    <!-- Color.white -->
+    <util:constant id="colorTextField" static-field="java.awt.Color.white" /> 
+    
+    <bean id="dimensionTextField" class="java.awt.Dimension">
+        <constructor-arg index="0" value="240"/>
+        <constructor-arg index="1" value="50"/>
+    </bean>
+    
+    <!-- Box box = Box.createRigidArea(dimensionTop); -->
+    <bean id="box" class="javax.swing.Box" factory-method="createRigidArea">
+        <constructor-arg ref="dimensionTop" />
+    </bean>
+    
+    <!-- Dimension dimensionTop = new Dimension(0, 10); -->
+    <bean id="dimensionTop" class="java.awt.Dimension">
+        <constructor-arg index="0" value="0"/>
+        <constructor-arg index="1" value="10"/>
+    </bean>
+    
+</beans>

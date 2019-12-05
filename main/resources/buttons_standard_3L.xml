@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+     
+    <!-- ==================== BUTTON "7" ============================ -->
+    <bean id="sevenButton" class="com.calc.ui.elements.Button"  init-method="init">
+        <property name="actionListener">
+            <ref bean="actionSevenListener"/> 
+        </property> 
+        <property name="text">
+            <value>7</value>
+        </property>
+    </bean>
+    
+    <bean id="actionSevenListener"  class="com.calc.ui.elements.actions.actionCommon">
+        <property name="result">
+            <ref bean="resultTextField"/> 
+        </property>
+        <property name="pressKey">
+            <value>7</value> 
+        </property>
+        <property name="actResult">
+            <ref bean="actionResultListener"/> 
+        </property>
+        <property name="histor">
+            <ref bean="_history_"/> 
+        </property>
+        <property name="action_ce_c">
+            <ref bean="actionCancelListener"/> 
+        </property>
+    </bean>
+    
+    <!-- ==================== BUTTON  "8" ============================ -->
+    <bean id="eightButton" class="com.calc.ui.elements.Button"  init-method="init">
+        <property name="actionListener">
+            <ref bean="actionEightListener"/> 
+        </property> 
+        <property name="text">
+            <value>8</value>
+        </property>
+    </bean>
+    
+    <bean id="actionEightListener"  class="com.calc.ui.elements.actions.actionCommon">
+        <property name="result">
+            <ref bean="resultTextField"/> 
+        </property>
+        <property name="pressKey">
+            <value>8</value> 
+        </property>
+        <property name="actResult">
+            <ref bean="actionResultListener"/> 
+        </property>
+        <property name="histor">
+            <ref bean="_history_"/> 
+        </property>
+        <property name="action_ce_c">
+            <ref bean="actionCancelListener"/> 
+        </property>
+    </bean>
+    
+    <!-- ==================== BUTTON  "9" ============================ -->
+    <bean id="nineButton" class="com.calc.ui.elements.Button"  init-method="init">
+        <property name="actionListener">
+            <ref bean="actionNineListener"/> 
+        </property> 
+        <property name="text">
+            <value>9</value>
+        </property>
+    </bean>
+    
+    <bean id="actionNineListener"  class="com.calc.ui.elements.actions.actionCommon">
+        <property name="result">
+            <ref bean="resultTextField"/> 
+        </property>
+        <property name="pressKey">
+            <value>9</value> 
+        </property>
+        <property name="actResult">
+            <ref bean="actionResultListener"/> 
+        </property>
+        <property name="histor">
+            <ref bean="_history_"/> 
+        </property>
+        <property name="action_ce_c">
+            <ref bean="actionCancelListener"/> 
+        </property>
+    </bean>
+    
+    <!-- ==================== BUTTON  "/" ============================ -->
+    <bean id="divideButton" class="com.calc.ui.elements.Button"  init-method="init">
+        <property name="actionListener">
+            <ref bean="actionDivideListener"/> 
+        </property> 
+        <property name="text">
+            <value>/</value>
+        </property>
+    </bean>
+    
+    <bean id="actionDivideListener"  class="com.calc.ui.elements.actions.actionCommon">
+        <property name="result">
+            <ref bean="resultTextField"/> 
+        </property>
+        <property name="pressKey">
+            <value>/</value> 
+        </property>
+        <property name="actResult">
+            <ref bean="actionResultListener"/> 
+        </property>
+        <property name="histor">
+            <ref bean="_history_"/> 
+        </property>
+        <property name="action_ce_c">
+            <ref bean="actionCancelListener"/> 
+        </property>
+    </bean>
+    
+    <!-- ==================== BUTTON  "%" ============================ -->
+    <bean id="percentButton" class="com.calc.ui.elements.Button"  init-method="init">
+        <property name="actionListener">
+            <ref bean="actionPercentListener"/> 
+        </property> 
+        <property name="text">
+            <value>%</value>
+        </property>
+    </bean>
+    
+    <bean id="actionPercentListener"  class="com.calc.ui.elements.actions.actionCommon">
+        <property name="result">
+            <ref bean="resultTextField"/> 
+        </property>
+        <property name="pressKey">
+            <value>%</value> 
+        </property>
+        <property name="actResult">
+            <ref bean="actionResultListener"/> 
+        </property>
+        <property name="histor">
+            <ref bean="_history_"/> 
+        </property>
+        <property name="action_ce_c">
+            <ref bean="actionCancelListener"/> 
+        </property>
+    </bean>
+
+</beans>
