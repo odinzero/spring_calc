@@ -21,6 +21,9 @@ public class action_arrLeft extends actionCommon {
 
             result.setText(str);
 
+        } else {
+            
+            result.setText("0"); 
         }
 
 //          for (int i = 0; i < histor.getHistory().size(); i++) {

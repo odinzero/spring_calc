@@ -374,5 +374,17 @@ public class util {
 
         return count;
     }
+    
+     public static String formulaFindPercent(Number a, Number b) {
+           // System.out.println("D");
+            // 500 * 20% = 500 * (500 * 20/100) = 50000 
+            // 500 / 20% = 500 / (500 * 20/100) = 
+            // 500 + 20% = 500 + (500 * 20/100) = 
+            // 500 - 20% = 500 - (500 * 20/100) = 
+            
+            Number percent = a.doubleValue() * (b.doubleValue()/100);
+            
+            return removeEndZeroFromInteger(percent.toString());
+    }
 
 }

@@ -15,7 +15,6 @@ public class actionPoint extends actionCommon {
 //    public actionResult getAction_result() {
 //        return action_result;
 //    }
-
     public void actionPerformed(ActionEvent e) {
         // rule for key '.'
         String[] parsedTwoArgText = util2.parseArguments(result.getText());
@@ -94,37 +93,32 @@ public class actionPoint extends actionCommon {
                     result.setText(parsedTwoArgText[0]); //
                     System.out.println("point3_2_:");
                 }
-            }
-            // 
-            else if (points.get(1).equals("one_point_point") && points.size() >= 2){
-                
-                 int count = util.findChar(parsedTwoArgText[0], '.');
-                 
-                 if (count < 2) {
-                    result.setText(parsedTwoArgText[0] + "0" + this.getPressKey()); //
+            } // 
+            else if (points.get(1).equals("one_point_point") && points.size() >= 2) {
+
+                int count = util.findChar(parsedTwoArgText[0], '.');
+
+                if (count < 2) {
+
+                    // protection from additional zero 20.4557+0(0).236747 
+                    if (parsedTwoArgText[1].equals("one_point_point")) {
+                        result.setText(parsedTwoArgText[0] + "0" + this.getPressKey());
+                        // protection from additional zero 20.4557+0(0).236747
+                    } else if (parsedTwoArgText[1].equals("two_point")) {
+                        result.setText(parsedTwoArgText[0] + this.getPressKey());
+                    }
                     System.out.println("point30_01:");
                     // protection from trird point like this 3.2222 + 5.333333(.)   
                 } else {
                     result.setText(parsedTwoArgText[0]); //
                     System.out.println("point30_2:");
                 }
-                 
-                // when '=' pressed more then one time, 'c' is not pressed, array 'points' can have size > 2
-//                if (getActResult().countPressedResult >= 1 && points.size() > 2) {
-//                    result.setText(parsedTwoArgText[0] + "0" + this.getPressKey());
-//                    System.out.println("point30_01:");
-//                } 
-//                else if (getActResult().countPressedResult == 0 && points.size() > 2) {
-//                    result.setText(parsedTwoArgText[0]);
-//                    System.out.println("point30_2:");
-//                }
-                
+
                 // result.setText(parsedTwoArgText[0] + "0" + this.getPressKey());
-                System.out.println("point30_20:" + getActResult().countPressedResult + " " + points.size());
-            } 
-            //
+                //System.out.println("point30_20:" + getActResult().countPressedResult + " " + points.size());
+            } //
             else {
-                System.out.println("point30_20_500 :"  ); 
+                System.out.println("point30_20_500 :");
             }
         } // prev element in textfield is not number
         else {
@@ -140,21 +134,47 @@ public class actionPoint extends actionCommon {
                     System.out.println("point410");
                 } else if (points.get(1).equals("one_point_point") && points.size() == 2) {
                     result.setText(parsedTwoArgText[0] + "0" + this.getPressKey());
-                    System.out.println("point41");
+                    System.out.println("point41_55");
                 } else if (points.get(1).equals("two_point") && points.size() >= 2) {
-                    result.setText(parsedTwoArgText[0] + this.getPressKey());
+                    //result.setText(parsedTwoArgText[0] + this.getPressKey());
+                    protectFromThirdPoint(parsedTwoArgText[0]);
                     System.out.println("point41");
                 } else {
 
-                    result.setText(parsedTwoArgText[0] + this.getPressKey());
-                    System.out.println("point41_1");
+                    int count = util.findChar(parsedTwoArgText[0], '.');
+
+                    // protection from like this 2.2345 + 2.2(.)
+                    if (count < 2) {
+                        result.setText(parsedTwoArgText[0] + this.getPressKey());
+                        System.out.println("point41_1");
+                    } // protection from like this 2.2345 + 2.2(.)
+                    else {
+                        result.setText(parsedTwoArgText[0]);
+                        System.out.println("point41_777");
+                    }
+
                 }
-//                }
+
             } else {
                 result.setText(parsedTwoArgText[0] + this.getPressKey());
                 System.out.println("point6");
             }
 
+        }
+    }
+
+    public void protectFromThirdPoint(String parsedTwoArgText) {
+
+        int count = util.findChar(parsedTwoArgText, '.');
+
+        // protection from like this 2.2345 + 2.2(.)
+        if (count < 2) {
+            result.setText(parsedTwoArgText + this.getPressKey());
+            System.out.println("point41_1m");
+        } // protection from like this 2.2345 + 2.2(.)
+        else {
+            result.setText(parsedTwoArgText);
+            System.out.println("point41_777m");
         }
     }
 }

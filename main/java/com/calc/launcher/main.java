@@ -3,9 +3,14 @@ package com.calc.launcher;
 import com.calc.exceptions.mathException;
 import com.calc.parser.util;
 import static com.calc.parser.util.getSqrt;
+import static com.calc.parser.util.removeEndZeroFromInteger;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class main {
 
@@ -13,11 +18,10 @@ public class main {
 
          Launcher launcher = new Launcher();
          launcher.launch();
-         
-         List<String> h = new ArrayList();
-         h.add("2.3+3.5");
-         h.add("2.3+3.5");
-//        String add = " 5.55 - 4.56867 ";
+
+        
+//         String add = " 5.55 - 4.56867 ";
+//         System.out.println("Math: " + parseNumberFromString("4.56867465767687877786686868868")); //formulaFindPercent("400", "35")
 //------------------------------------------------------------------------------         
 //        String add = " 45.6 + "; // -3.56 / 0.1 
         String add = "9.8+."; // -0.5.
@@ -468,5 +472,35 @@ public class main {
             return 1 / a.doubleValue();
         }
     }
+    
+//     public static String formulaFindPercent(String a, String b) {
+//           // System.out.println("D");
+//            // 500 * 20% = 500 * (500 * 20/100) = 50000 
+//            // 500 / 20% = 500 / (500 * 20/100) = 
+//            // 500 + 20% = 500 + (500 * 20/100) = 
+//            // 500 - 20% = 500 - (500 * 20/100) = 
+//            
+//            
+//            
+//            Number percent = a.doubleValue() * (b.doubleValue()/100);
+//            
+//            return removeEndZeroFromInteger(percent.toString());
+//    }
+     
+     public static Number parseNumberFromString(String text)  {
+         
+         NumberFormat nf = NumberFormat.getInstance();
+         Number num = null;
+         
+        try {
+            nf.parse(text).getClass().getName();
+            
+            return  Double.parseDouble(text); 
+        } catch (ParseException ex) {
+           
+        }
+        
+        return  Double.parseDouble(text);  
+     }
 
 }
