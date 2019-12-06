@@ -4,7 +4,7 @@ package com.calc.parser;
 public class util2 {
     
      public static Number parseNumber2(String input, String find, int type) {
-
+        //                  1      2       3     4      5    6        7     
         String regex1 = "(\\s*)([-]*\\d*)(\\.*)(\\d*)(\\.*)(\\s*)([+-\\/\\*]*)";
          //                 1              2            3       4        5            6               7
         String regex2 = "(\\s*)([-]*\\d*\\.*\\d*\\.*)(\\s*)([+-\\/\\*])(\\s*)([-]*\\d*\\.*\\d*\\.*)(\\s*)";
@@ -18,17 +18,21 @@ public class util2 {
         
         //String numberStr = input.matches(regex);
 
-//        System.out.println("numberStr b :" + numberStr);
+        System.out.println("numberStr b :" + numberStr);
 
-        // 'numvberStr' canno be equal ""
+        // 'numvberStr' cannot be equal ""
         if (!numberStr.equals("")) {
             
             if(numberStr.equals(".")) 
               numberStr = "0"+numberStr;
-          // remove zero after dot  
-            numberStr = numberStr.replaceAll("([-]*\\d*)(\\.*)(\\d*)(\\.*)([+-\\/\\*])([0]*$)", "$1$2$3");
+            
+            System.out.println("numberStr c :" + numberStr);
+          // remove zero after dot                1        2    3
+//            numberStr = numberStr.replaceAll("([-]*\\d*)(\\.*)(\\d*)(\\.*)([+-\\/\\*])([0]*$)", "$1$2$3");   
+            numberStr = numberStr.replaceAll("([-]*\\d*)(\\.*)(\\d*)(\\.*)([+-\\/\\*]*)([0]*$)", "$1$2$3");   
 
-//            System.out.println("numberStr a :" + numberStr);
+            
+            System.out.println("numberStr aaa :" + numberStr);
             int dot = numberStr.indexOf('.');
 
             // System.out.println("dot:" + dot);
@@ -38,7 +42,7 @@ public class util2 {
             // Integer
             if (dot == -1) {
                 
-//                System.out.println("numberStr int :" + numberStr);
+                System.out.println("numberStr int :" + numberStr);
                 numInt = Integer.parseInt(numberStr);
 
 //                System.out.println("numInt:" + numInt);
@@ -54,10 +58,14 @@ public class util2 {
                     if (numberStr.charAt(i) == someChar) {
                         count++;
                     }
-                }
+                }     
+                // System.out.println("numDouble before:" + numDouble);
+                
+                
+                 
                 numDouble = Double.parseDouble(numberStr); 
 
-//                System.out.println("numDouble:" + numDouble);
+                System.out.println("numDouble after:" + numDouble);
 
 //            System.out.println("dot:" + dot);
                 return numDouble;

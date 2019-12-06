@@ -65,7 +65,7 @@ public class actionPoint extends actionCommon {
             }
         }
 
-        if (points.size() != 0 ) {
+        if (points.size() != 0) {
             // prev element in textfield is number
             if (last_isNumber) {
 
@@ -73,10 +73,21 @@ public class actionPoint extends actionCommon {
 
                     boolean b = parsedTwoArgText[0].contains(".");
 
+                    // match 0.0 and etc ...
+                    boolean bb = result.getText().matches("([-]*[0]*)(\\.*)([0]*$)");
+
                     // protection from wrong second point like this 3.2222(.) 
                     if (b) {
-                        result.setText(parsedTwoArgText[0]); //
-                        System.out.println("point3_1:" + parsedTwoArgText[0]);
+                        
+                        if (!bb) {
+                            result.setText(parsedTwoArgText[0]); //
+                            System.out.println("point3_1:" + parsedTwoArgText[0]);
+                        // when in text field 0.00000 and push '.' key  
+                        // should be 0.00000
+                        } else {
+                            result.setText(result.getText());
+                            System.out.println("point3_1111:");
+                        }
                     } else {
                         result.setText(parsedTwoArgText[0] + this.getPressKey()); //
                         System.out.println("point3_1_:");
@@ -160,28 +171,26 @@ public class actionPoint extends actionCommon {
                 }
 
             }
-        // '%' key is pressed  ; points size = 0;
-        // case when like this -> 23.466
+            // '%' key is pressed  ; points size = 0;
+            // case when like this -> 23.466
         } else {
-          // boolean b0 = parsedTwoArgText[0].contains(".");
-           
-          int count = util.findChar(parsedTwoArgText[0], '.');
-           if(count < 2) {
-               if(parsedTwoArgText[1].equals("one_point_point")) {
-                 result.setText(parsedTwoArgText[0] + "0" + this.getPressKey());
-                 System.out.println("p00_10: " );
-               }
-               else if(parsedTwoArgText[1].equals("two_point")) {
-                 result.setText(parsedTwoArgText[0] + this.getPressKey());  
-                 System.out.println("p00_11: " );
-               }
-           } 
-           else {
-               result.setText(parsedTwoArgText[0] ); // + this.getPressKey()
-               System.out.println("p00_12: " );
-           }
-           
-            System.out.println("p00: " );
+            // boolean b0 = parsedTwoArgText[0].contains(".");
+
+            int count = util.findChar(parsedTwoArgText[0], '.');
+            if (count < 2) {
+                if (parsedTwoArgText[1].equals("one_point_point")) {
+                    result.setText(parsedTwoArgText[0] + "0" + this.getPressKey());
+                    System.out.println("p00_10: ");
+                } else if (parsedTwoArgText[1].equals("two_point")) {
+                    result.setText(parsedTwoArgText[0] + this.getPressKey());
+                    System.out.println("p00_11: ");
+                }
+            } else {
+                result.setText(parsedTwoArgText[0]); // + this.getPressKey()
+                System.out.println("p00_12: ");
+            }
+
+            System.out.println("p00: ");
         }
     }
 

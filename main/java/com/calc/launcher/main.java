@@ -19,6 +19,12 @@ public class main {
         Launcher launcher = new Launcher();
         launcher.launch();
 
+          String numberStr = "0.0";
+
+//          boolean b = numberStr.matches("([-]*[0]*)(\\.*)([0]*$)"); 
+          
+//          System.out.println(": " + b);
+
 //        List<String> str = new ArrayList();
 //        str.add("one_point");
 //        str.add("two_point");
