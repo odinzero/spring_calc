@@ -32,13 +32,21 @@ public class actionResult extends actionCommon {
             String r = null;
             if (countPressedResult == 1) {
 
+                String[] parsedTwoArgText = util2.parseArguments(result.getText());
                 resHistoryOperations.add(result.getText());
 
-                System.out.println("co0: " + result.getText());
+                // when two arguments like 50.56+12
+                if (parsedTwoArgText.length > 2) {
 
-                r = parseOperation(result.getText(), "$4");
-              
-                result.setText(r.toString());
+                    System.out.println("co0: " + result.getText());
+
+                    r = parseOperation(result.getText(), "$4");
+
+                    result.setText(r.toString());
+                // when textfiled like this 56.23, 56.23+ and etc    
+                } else {
+                    result.setText(result.getText());
+                }
             } // countPressedResult > 1
             else {
 
@@ -62,8 +70,8 @@ public class actionResult extends actionCommon {
                             r = parseOperation(res, "$4");
                             result.setText(r.toString());
                         } else {
-                            
-                           result.setText(result.getText());
+
+                            result.setText(result.getText());
                         }
 
 //                        System.out.println("=  01: " + result.getText() + "  " + operand + "  " + last_argument );

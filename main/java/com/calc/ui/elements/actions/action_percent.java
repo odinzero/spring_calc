@@ -6,15 +6,15 @@ import java.awt.event.ActionEvent;
 
 public class action_percent extends actionCommon {
     
-    public actionPoint action_point;
-
-    public void setAction_point(actionPoint action_point) {
-        this.action_point = action_point;
-    }
-
-    public actionPoint getAction_point() {
-        return action_point;
-    }
+//    public actionPoint action_point;
+//
+//    public void setAction_point(actionPoint action_point) {
+//        this.action_point = action_point;
+//    }
+//
+//    public actionPoint getAction_point() {
+//        return action_point;
+//    }
 
     public void actionPerformed(ActionEvent e) {
 

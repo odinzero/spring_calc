@@ -16,35 +16,61 @@ public class main {
 
     public static void main(String[] args) {
 
-         Launcher launcher = new Launcher();
-         launcher.launch();
+        Launcher launcher = new Launcher();
+        launcher.launch();
 
-        
+//        List<String> str = new ArrayList();
+//        str.add("one_point");
+//        str.add("two_point");
+//        str.add("two_point");
+//        str.add("two_point");
+//        str.add("two_point");
+//        
+//        str.removeAll(Collections.singleton("two_point"));
+
+//            for (int i = 0; i < str.size(); i++) {
+//            System.out.println(str.get(i) + " " + str.size()); 
+//         }
+
+//        List<String> s = new ArrayList();
+//        for (int i = 0; i < str.size(); i++) {
+//           // String element = str.get(i);
+//         //  System.out.println(i + " " + str.get(i));
+//
+//            if (i > 0) {
+////                if (element.equals("two_point")) {
+////                     s.add(element);
+////                } else if (element.equals("one_point_point")) {
+////                     s.add(element);
+//               str.remove(str.get(i));
+//               System.out.println(i + " " + str.get(i)); 
+//            } else {
+//               System.out.println("n: " +  i + " " + str.get(i)); 
+//            }
+//        }
+
+
 //         String add = " 5.55 - 4.56867 ";
 //         System.out.println("Math: " + parseNumberFromString("4.56867465767687877786686868868")); //formulaFindPercent("400", "35")
 //------------------------------------------------------------------------------         
 //        String add = " 45.6 + "; // -3.56 / 0.1 
         String add = "9.8+."; // -0.5.
-        
+
 //        String regex = "(\\s*)([-]*\\d*\\.*\\d*\\.*)(\\s*)([+-\\/\\*])(\\s*)([-]*\\d*\\.*\\d*\\.*)(\\s*)";
 //        
 //        String s = add.replaceAll(regex, "$4");
 //        
 //        System.out.println("res :" + s);
-        
 //        parseArguments(add);
 //        
 //        System.out.println("res :" + parseArguments(add));
-
 //        Number n1 = parseNumber2(add, "$2$3$4");
 //        Number n2 = parseNumber2(add, "$9$10$11");
-
 //        System.out.println("res :" + n1 + "  " + n2);
 //
 //        String n = parseOperation(add, "$4");
 //
 //        System.out.println("res :" + n);
-
 //         Number n = util.parseNumber("9.0");
 //
 //         System.out.println("res sqrt :" + n  + "  " +  getSqrt(n));  
@@ -76,26 +102,32 @@ public class main {
     public static Number parseNumber2(String input, String find, int type) {
 
         String regex1 = "(\\s*)([-]*\\d*)(\\.*)(\\d*)(\\.*)(\\s*)([+-\\/\\*]*)";
-         //                 1              2            3       4        5            6               7
+        //                 1              2            3       4        5            6               7
         String regex2 = "(\\s*)([-]*\\d*\\.*\\d*\\.*)(\\s*)([+-\\/\\*])(\\s*)([-]*\\d*\\.*\\d*\\.*)(\\s*)";
 
         String numberStr = "";
-        switch(type) {
-            default:break;
-            case 1: numberStr = input.replaceAll(regex1, find); break;
-            case 2: numberStr = input.replaceAll(regex2, find); System.out.println("ins ! :" + find);  break;
+        switch (type) {
+            default:
+                break;
+            case 1:
+                numberStr = input.replaceAll(regex1, find);
+                break;
+            case 2:
+                numberStr = input.replaceAll(regex2, find);
+                System.out.println("ins ! :" + find);
+                break;
         }
-        
-        //String numberStr = input.matches(regex);
 
+        //String numberStr = input.matches(regex);
         System.out.println("numberStr b :" + numberStr);
 
         // 'numvberStr' canno be equal ""
         if (!numberStr.equals("")) {
-            
-            if(numberStr.equals(".")) 
-              numberStr = "0"+numberStr;  
-          // remove zero after dot  
+
+            if (numberStr.equals(".")) {
+                numberStr = "0" + numberStr;
+            }
+            // remove zero after dot  
             numberStr = numberStr.replaceAll("([-]*\\d*)(\\.*)(\\d*)(\\.*)([+-\\/\\*])([0]*$)", "$1$2$3");
 
             System.out.println("numberStr a :" + numberStr);
@@ -107,7 +139,7 @@ public class main {
             // number like this 13,25,37,489,5,6,7,8,9
             // Integer
             if (dot == -1) {
-                
+
                 System.out.println("numberStr int :" + numberStr);
                 numInt = Integer.parseInt(numberStr);
 
@@ -125,7 +157,7 @@ public class main {
                         count++;
                     }
                 }
-                numDouble = Double.parseDouble(numberStr); 
+                numDouble = Double.parseDouble(numberStr);
 
                 System.out.println("numDouble:" + numDouble);
 
@@ -138,54 +170,52 @@ public class main {
         }
 
     }
-    
+
     public static String parseArguments(String input) {
-        
+
         //                 1         2                 3        
         String regex1 = "(\\s*)([-]*\\d*\\.*\\d*\\.*)(\\s*)";
         //                 1         2                 3        4 
         String regex2 = "(\\s*)([-]*\\d*\\.*\\d*\\.*)(\\s*)([+-\\/\\*])";
         //                 1         2                 3        4        5             6             7
         String regex3 = "(\\s*)([-]*\\d*\\.*\\d*\\.*)(\\s*)([+-\\/\\*])(\\s*)([-]*\\d*\\.*\\d*\\.*)(\\s*)";
-        
+
         String operand = null;
         Number num1 = null;
         Number num2 = null;
-        if(input.matches(regex1) ) {
-            
+        if (input.matches(regex1)) {
+
             num1 = parseNumber2(input, "$2$3$4", 1);
-                    
+
             System.out.println("bool1: " + input.matches(regex1) + "  " + num1);
-            
+
             return num1.toString();
         } else if (input.matches(regex2)) {
-            
+
             num1 = parseNumber2(input, "$2$3$4", 1);
-            
+
             operand = input.replaceAll(regex2, "$4");
             System.out.println("bool2: " + input.matches(regex2) + "  " + num1);
-            
+
             return num1.toString() + operand;
         } else if (input.matches(regex3)) {
-            
-            
+
             System.out.println("bool3: ");
-            
-            num1 = parseNumber2(input, "$2", 2); 
+
+            num1 = parseNumber2(input, "$2", 2);
             num2 = parseNumber2(input, "$6", 2);
             operand = input.replaceAll(regex3, "$4");
-            
-            System.out.println("bool3: " + input.matches(regex3) + "  " + num1  + "  " + operand );
-            
+
+            System.out.println("bool3: " + input.matches(regex3) + "  " + num1 + "  " + operand);
+
             return num1.toString() + operand + num2.toString();
         } else {
-             return "";
+            return "";
         }
 
     }
-    
-    //===========================================================================================================
 
+    //===========================================================================================================
     public static String parseOperation(String input, String find) {
         //                 1         2            3        4        5         6             7
         String regex = "(\\s*)([-]*\\d*\\.*\\d*)(\\s*)([+-\\/\\*])(\\s*)([-]*\\d*\\.*\\d*)(\\s*)";
@@ -472,7 +502,7 @@ public class main {
             return 1 / a.doubleValue();
         }
     }
-    
+
 //     public static String formulaFindPercent(String a, String b) {
 //           // System.out.println("D");
 //            // 500 * 20% = 500 * (500 * 20/100) = 50000 
@@ -486,21 +516,20 @@ public class main {
 //            
 //            return removeEndZeroFromInteger(percent.toString());
 //    }
-     
-     public static Number parseNumberFromString(String text)  {
-         
-         NumberFormat nf = NumberFormat.getInstance();
-         Number num = null;
-         
+    public static Number parseNumberFromString(String text) {
+
+        NumberFormat nf = NumberFormat.getInstance();
+        Number num = null;
+
         try {
             nf.parse(text).getClass().getName();
-            
-            return  Double.parseDouble(text); 
+
+            return Double.parseDouble(text);
         } catch (ParseException ex) {
-           
+
         }
-        
-        return  Double.parseDouble(text);  
-     }
+
+        return Double.parseDouble(text);
+    }
 
 }

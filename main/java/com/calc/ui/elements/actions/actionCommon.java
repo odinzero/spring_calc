@@ -3,6 +3,7 @@ package com.calc.ui.elements.actions;
 import com.calc.base.IActionListener;
 import com.calc.parser.History;
 import com.calc.parser.util;
+import com.calc.parser.util2;
 import java.awt.event.ActionEvent;
 
 public class actionCommon extends IActionListener {
@@ -10,6 +11,7 @@ public class actionCommon extends IActionListener {
     actionResult actResult;
     action_CE_C action_ce_c;
     action_percent act_percent;
+    actionPoint action_point;
 
     public void setActResult(actionResult actResult) {
         this.actResult = actResult;
@@ -34,17 +36,23 @@ public class actionCommon extends IActionListener {
     public action_percent getAct_percent() {
         return act_percent;
     }
-    
-    
+
+    public void setAction_point(actionPoint action_point) {
+        this.action_point = action_point;
+    }
+
+    public actionPoint getAction_point() {
+        return action_point;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+
         if (getAction_ce_c().isTurnOnCalc()) {
-            
+
             getActResult().countPressedResult = 0;
             getActResult().resHistoryOperations.clear();
-            
+
             getAct_percent().countPressedPercent = 0;
             getAct_percent().percentHistoryOperations.clear();
 
@@ -53,28 +61,28 @@ public class actionCommon extends IActionListener {
             int historySize = histor.getHistory().size();
 
             if (!getPressKey().equals("=") && !getPressKey().equals(".")) {
-                
-                      histor.getHistory().add(getPressKey());
+
+                histor.getHistory().add(getPressKey());
             }
-            
-           // System.out.println("::: " + histor.getHistory().size()); 
 
+            // System.out.println("::: " + histor.getHistory().size()); 
             boolean last_isNumber = false;
-            if(histor.getHistory().size() != 0)
-            if (histor.getHistory().size() >= 2) {
-                last_isNumber = util.isNumeric(histor.getHistory().get(histor.getHistory().size() - 2));
+            if (histor.getHistory().size() != 0) {
+                if (histor.getHistory().size() >= 2) {
+                    last_isNumber = util.isNumeric(histor.getHistory().get(histor.getHistory().size() - 2));
 
-                System.out.println("if last_isNumber:" + last_isNumber + "  "
-                        + histor.getHistory().get(histor.getHistory().size() - 2) + "  " + histor.getHistory().size());
-            } else  {
-                histor.setFirstTime(util.isNumeric(histor.getHistory().get(histor.getHistory().size() - 1)));
+                    System.out.println("if last_isNumber:" + last_isNumber + "  "
+                            + histor.getHistory().get(histor.getHistory().size() - 2) + "  " + histor.getHistory().size());
+                } else {
+                    histor.setFirstTime(util.isNumeric(histor.getHistory().get(histor.getHistory().size() - 1)));
 
-                if (last_isNumber != histor.isFirstTime()) {
-                    last_isNumber = histor.isFirstTime();
+                    if (last_isNumber != histor.isFirstTime()) {
+                        last_isNumber = histor.isFirstTime();
+                    }
+
+                    System.out.println("else last_isNumber:" + last_isNumber + "  "
+                            + histor.getHistory().get(histor.getHistory().size() - 1) + "  " + histor.getHistory().size());
                 }
-
-                System.out.println("else last_isNumber:" + last_isNumber + "  "
-                        + histor.getHistory().get(histor.getHistory().size() - 1) + "  " + histor.getHistory().size());
             }
 
             // key '=' is pressed 
@@ -160,15 +168,37 @@ public class actionCommon extends IActionListener {
                             boolean first_isNumber = util.isNumeric(histor.getHistory().get(0));
 
                             if (first_isNumber) {
-                                // replace operands between each other 
-                                histor.getHistory().remove(histor.getHistory().size() - 2);
-                                histor.getHistory().remove(histor.getHistory().size() - 1);
-                                histor.getHistory().add(getPressKey());
 
-                                String sub = result.getText().substring(0, result.getText().length() - 1);
+                                System.out.println("8 start: ======================");
+//                                for (int i = 0; i < histor.getHistory().size(); i++) {
+//                                    String element = histor.getHistory().get(i);
+//                                    System.out.println(element);
+//                                }
 
-                                result.setText(sub + getPressKey());
-                                System.out.println("8: " + getPressKey());
+                                String[] parsedTwoArgText = util2.parseArguments(result.getText());
+
+                                String num = parsedTwoArgText[0].substring(result.getText().length() - 1, result.getText().length());
+
+                                boolean b = util.isNumeric(num);
+
+                                if (b) {
+                                    result.setText(result.getText().substring(0, result.getText().length()) + this.pressKey);
+                                    System.out.println("8_1 num: " + num + " " + b);
+                                } else {
+
+                                    // replace operands between each other +,-,/,*
+                                    histor.getHistory().remove(histor.getHistory().size() - 2);
+                                    histor.getHistory().remove(histor.getHistory().size() - 1);
+                                    histor.getHistory().add(getPressKey());
+
+                                    String sub = result.getText().substring(0, result.getText().length() - 1);// - 1
+
+                                    result.setText(sub + getPressKey());
+                                    
+                                    System.out.println("8_2 num: " + num + " " + b);
+                                }
+                                
+                                System.out.println("8 end: ====================== " + getAction_point().points.size());
                             } else {
                                 //
                                 if (result.getText().equals("0")) {
@@ -180,7 +210,7 @@ public class actionCommon extends IActionListener {
                                     histor.getHistory().remove(histor.getHistory().size() - 1);
                                     histor.getHistory().add(getPressKey());
 
-                                    String sub = result.getText().substring(0, result.getText().length() -1 ); //-1
+                                    String sub = result.getText().substring(0, result.getText().length() - 1); //-1
 
                                     result.setText(sub + getPressKey());
                                     System.out.println("29: " + getPressKey());

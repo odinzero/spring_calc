@@ -76,7 +76,7 @@ public class actionPoint extends actionCommon {
                     // protection from wrong second point like this 3.2222(.) 
                     if (b) {
                         result.setText(parsedTwoArgText[0]); //
-                        System.out.println("point3_1:");
+                        System.out.println("point3_1:" + parsedTwoArgText[0]);
                     } else {
                         result.setText(parsedTwoArgText[0] + this.getPressKey()); //
                         System.out.println("point3_1_:");
